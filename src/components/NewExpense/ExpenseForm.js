@@ -1,50 +1,11 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css"
 
-const ExpenseForm = () => {
-
-  // You can use two ways of using useState:
+const ExpenseForm = ({onSaveExpenseData}) => {
 
   const [titleInput, setTitleInput] = useState("");
   const [amountInput, setAmountInput] = useState("");
   const [dateInput, setDateInput] = useState("");
-  
-  // one way is using three useState statements for title, amount and date values and update them accordingly. ex : const [title, setTitle] = useState(""); etc...
-
-  // and the other way is, as shown below, using a single state to hold all user inputs and updating the values this way.
-
-  // const [inputValue, setInputValue] = useState({
-  //   titleInput : "",
-  //   amountInput : "",
-  //   dateInput : "",
-  // });
-
-  // const handleTitleChange = (ev) => {
-  //   setInputValue((prevState) => {
-  //     return { 
-  //       ...prevState, 
-  //       titleInput: ev.target.value 
-  //     };
-  //   });
-  // };
-
-  // const handleAmountChange = (ev) => {
-  //  setInputValue((prevState) => {
-  //     return {
-  //       ...prevState, 
-  //       amountInput: ev.target.value,
-  //     }
-  //   });
-  // };
-
-  // const handleDateChange = (ev) => {
-  //   setInputValue((prevState) => {
-  //     return {
-  //       ...prevState, 
-  //       dateInput: ev.target.value
-  //     }
-  //   });
-  // };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -55,8 +16,10 @@ const ExpenseForm = () => {
       date: new Date(dateInput),
     };
 
-    console.log(expenseData);
+    // The state will be lifted up to parent component with this function call. 
+    onSaveExpenseData(expenseData);
 
+    // The form values will be reset.
     setTitleInput("");
     setDateInput("");
     setAmountInput("");
