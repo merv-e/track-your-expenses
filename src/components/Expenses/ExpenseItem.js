@@ -9,8 +9,7 @@ const ExpenseItem = props => {
 
   const handleDelete = () => {
     setTitle("Updated!")
-    console.log(title);
-  //  return 
+    // console.log(title);
   };
    
   return (
