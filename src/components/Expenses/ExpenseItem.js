@@ -4,25 +4,21 @@ import ExpenseDate from "./ExpenseDate";
 import "./ExpenseItem.css"
 
 const ExpenseItem = props => {
-  const [title, setTitle] = useState(props.title)
-  // let title = props.title;
+
+  // TODO : add an icon instead of "X" and create a function below to delete expense(s)
 
   const handleDelete = () => {
-    setTitle("Updated!")
-    // console.log(title);
+    console.log(`Delete "${props.title}" from the expense list.`);
   };
    
   return (
     <Card className="expense-item"> 
       <ExpenseDate date={props.date} />
       <div className="expense-item__description">
-          <h2>{title}</h2>
+          <h2>{props.title}</h2>
           <div className="expense-item__price">{props.amount}</div>
       </div>
-
-      {/* TODO : change the button as an icon */}
-    <button onClick={handleDelete}>Update</button>
-    
+    <button onClick={handleDelete}>X</button>
     </Card>
   )
 }
