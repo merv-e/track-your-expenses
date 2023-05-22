@@ -2,11 +2,12 @@ import "./ChartBar.css"
 
 const ChartBar = props => {
   
-    let filledBarHeight = "%0";
+    let filledBarHeight;
 
-    if(props.maxValue > 0) {
-        filledBarHeight = Math.round((props.value / props.maxValue) *100) + "%";
-    };
+    props.maxValue > 0
+      ? (filledBarHeight =
+          Math.round((props.value / props.maxValue) * 100) + "%")
+      : (filledBarHeight = "%0");
 
   return (
     <div className="chart-bar">
