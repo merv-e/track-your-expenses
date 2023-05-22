@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
 
@@ -12,13 +13,33 @@ const NewExpense = ({onAddExpense}) => {
     };
 
     onAddExpense(expenseData);
+
+    
+    //after creating an expense, "add expense" button will be shown
+    setShowCreateExpenseForm(false);
   };
+
+    const [showCreateExpenseForm, setShowCreateExpenseForm] = useState(false);
+
+    const createNewExpense = () => {
+      setShowCreateExpenseForm(true);
+    };
+
+    const cancelCreateExpenseForm = () => {
+      setShowCreateExpenseForm(false);
+    }
 
   return (
     <div className="new-expense">
-      <ExpenseForm 
-       onSaveExpenseData={saveNewExpenseData} 
-      />
+      { 
+      !showCreateExpenseForm 
+      ? <button onClick={createNewExpense}>Add Expense</button>
+      : (
+        <ExpenseForm 
+         onSaveExpenseData={saveNewExpenseData}
+         onCancel = {() => cancelCreateExpenseForm()} 
+        />
+      )}
     </div>
   );
 };
